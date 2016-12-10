@@ -16,7 +16,7 @@ class Stack {
   }
   
   int pop() {
-  	cout << "Pop: \n";
+  	cout << "Pop! \n";
     if (top == 0) 
 		return -1;
     return s[--top];
@@ -55,6 +55,7 @@ int main() {
   Stack * s = new Stack(100);
   int choice;
 re:
+	system("cls");
   menu();
   cin >> choice;
   switch (choice){
@@ -72,11 +73,13 @@ re:
 	}
   	case 2:{
   		s ->pop();
+  		system("pause > 5");
   		goto re;
 		break;
 	  } 
 	case 3:{
 		s -> display();
+		system("pause > 5");
 		goto re;
 		break;
 	}
