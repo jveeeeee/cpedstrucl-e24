@@ -21,27 +21,44 @@ public:
     void addValue(int val){
         Node *n = new Node();   
         n->x = val;             
-        n->next = head;         
-                               
+        n->next = head;                       
         head = n;              
     }
 
     int popValue(){
         Node *n = head;
-        int ret = n->x;
-
-        head = head->next;
-        delete n;
-        return ret;
+        int ret;
+        if (head == NULL){
+        	return NULL;
+        }
+		else{
+        	ret = n->x;
+        	head = head->next;
+       	 	delete n;
+       		return ret;
+    	}    
     }
-
+    void display(){
+		Node *n;
+		n = head;
+		if (n == NULL){
+			cout <<"Empty Stack" << endl;
+		}
+		else{
+			while(n!=NULL){
+				cout << n->x << endl;
+				n = n->next;
+			}	
+		}
+	}
 private:
     Node *head; 
 };
 
 int main() {
+	int extra =0;
     LinkedList list;
-while (true){
+while (extra < 1){
 	int choice,num;
 	menu();
 	cin >> choice;
@@ -53,14 +70,23 @@ while (true){
 			break;
 		}
 		case 2:{
-			list.popValue();
+			num = list.popValue();
+				if (num == NULL){
+					cout << "Empty Stack" << endl;
+				}
+				else
+					cout << num << " has been popped " << endl;
 			break;
 		}
 		case 3:{
 			exit(1);
 			break;
 		}
-	} 
+		case 4:{
+			list.display();	
+			break;
+		}
+	}
 }
     return 0;
 }
