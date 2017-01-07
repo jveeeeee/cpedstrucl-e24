@@ -63,6 +63,21 @@ void addafter(int num, int loc) {
   int i;
   struct node * temp, * left, * right;
   right = head;
+  for (i = 0; i < loc; i++) {
+    left = right;
+    right = right -> next;
+  }
+  temp = (struct node * ) malloc(sizeof(struct node));
+  temp -> data = num;
+  left -> next = temp;
+  left = temp;
+  left -> next = right;
+}
+
+void addbefore(int num, int loc) {
+  int i;
+  struct node * temp, * left, * right;
+  right = head;
   for (i = 1; i < loc; i++) {
     left = right;
     right = right -> next;
@@ -72,7 +87,6 @@ void addafter(int num, int loc) {
   left -> next = temp;
   left = temp;
   left -> next = right;
-  return;
 }
 
 int ddelete(int num) {
@@ -95,6 +109,18 @@ int ddelete(int num) {
     }
   }
   return 0;
+}
+
+void deleteall(int num){
+	struct node * n;
+  int c = 1;
+  n = head;
+  
+  while (n != NULL) {
+  	ddelete(num);
+    n = n -> next;
+    c++;
+  }
 }
 
 void insert(int num) {
@@ -133,9 +159,15 @@ void display(struct node * r) {
 }
 
 int main() {
-  int i, num;
+  int i, num,loc;
   struct node * n;
   head = NULL;
+  insert(1);
+  insert(4);
+  insert(3);
+  insert(4);
+  insert(4);
+  
   while (1) {
     printf("Linked List Operations\n");
     printf("===============\n");
@@ -144,7 +176,10 @@ int main() {
     printf("3.Size\n");
     printf("4.Delete\n");
     printf("5.Search\n");
-    printf("6.Exit\n");
+    printf("6.Addafter\n");
+    printf("7.Addbefore\n");
+    printf("8.Delete all\n");
+    printf("9.Exit\n");
     printf("Enter your choice : ");
     if (scanf("%d", & i) <= 0) {
       printf("Enter only an Integer\n");
@@ -183,7 +218,26 @@ int main() {
     		cout << "Enter number to search ";
   			cin >> num;
     		search(num);
-      case 6:
+    	case 6:
+    		cout << "Enter number to add ";
+    		cin >> num;
+    		cout << "Enter location to add into ";
+    		cin >> loc;
+    		addafter(num, loc);
+    		break;
+    	case 7:
+    		cout << "Enter number to add ";
+    		cin >> num;
+    		cout << "Enter location to add into ";
+    		cin >> loc;
+    		addbefore(num, loc);
+    		break;
+    	case 8:
+        	cout << "Enter a number to delete ";
+        	cin >> num;
+        	deleteall(num);
+        	break;
+      case 9:
         return 0;
       default:
         printf("Invalid option\n");
