@@ -12,11 +12,12 @@ int main(){
 				int swap = A[j];
 				A[j] = A[j+1];
 				A[j+1] = swap;
-			cout << "Pass#" << x++ << " ";
-			for (int z=0;z<n;z++){
-				cout << A[z] << " ";
-			}
-			cout << endl;
+				cout << "Pass#" << x++ << ": ";
+					for (int z=0;z<n;z++){
+						cout << A[z] << " ";
+					}	
+					cout << "Swapped: " << A[j] << "," << A[j+1];
+					cout << endl;
 			}		
 		}
 	}	
