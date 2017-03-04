@@ -18,6 +18,6 @@ int main(){
 		}	
 		cout << "Swapped: " << A[i] << "," << A[i+1];
 		cout << endl;
-		}
+	}
 }
 	
